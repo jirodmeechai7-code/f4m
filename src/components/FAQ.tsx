@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { HelpCircle, ChevronDown, ChevronUp } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 
 interface FAQItemProps {
   key?: string;
@@ -14,7 +15,7 @@ function FAQItem({ id, question, answer }: FAQItemProps) {
   return (
     <div
       onClick={() => setIsOpen(!isOpen)}
-      className="border-2 border-neutral-950 rounded-none p-5 bg-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(220,38,38,1)] cursor-pointer transition-all duration-200"
+      className="border-2 border-neutral-950 rounded-none p-5 bg-white shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:shadow-[5px_5px_0px_0px_rgba(220,38,38,1)] cursor-pointer transition-all duration-200 select-none pb-4"
     >
       <div className="flex justify-between items-center gap-4">
         <h4 className="text-neutral-900 font-extrabold text-sm sm:text-base font-display uppercase tracking-tight">
@@ -24,11 +25,21 @@ function FAQItem({ id, question, answer }: FAQItemProps) {
           {isOpen ? <ChevronUp className="w-5 h-5 stroke-[2.5]" /> : <ChevronDown className="w-5 h-5 stroke-[2.5]" />}
         </div>
       </div>
-      {isOpen && (
-        <p className="text-xs sm:text-sm text-neutral-600 mt-3 font-bold leading-relaxed border-t-2 border-neutral-950 pt-3 animate-in fade-in duration-200">
-          {answer}
-        </p>
-      )}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <p className="text-xs sm:text-sm text-neutral-600 mt-3 font-bold leading-relaxed border-t-2 border-neutral-950 pt-3">
+              {answer}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

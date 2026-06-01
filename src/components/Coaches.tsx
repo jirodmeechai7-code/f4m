@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Sparkles, Trophy, CheckCircle, ChevronRight, GraduationCap } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 import { coaches } from "../data";
 
 export default function Coaches() {
@@ -44,9 +45,17 @@ export default function Coaches() {
           ))}
         </div>
 
-        {/* Selected Coach profile layout */}
-        <div className="bg-white rounded-none overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-2 border-neutral-950 max-w-5xl mx-auto mt-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+        {/* Selected Coach profile layout with smooth cross-fade animation on selection */}
+        <AnimatePresence mode="wait">
+          <motion.div 
+            key={selectedCoachId}
+            initial={{ opacity: 0, scale: 0.98, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.98, y: -10 }}
+            transition={{ duration: 0.35, ease: "easeInOut" }}
+            className="bg-white rounded-none overflow-hidden shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-2 border-neutral-950 max-w-5xl mx-auto mt-6"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
             
             {/* Left information card (7 columns) */}
             <div className="lg:col-span-7 p-6 sm:p-10 lg:p-12 flex flex-col justify-between gap-6">
@@ -117,7 +126,8 @@ export default function Coaches() {
             </div>
 
           </div>
-        </div>
+        </motion.div>
+      </AnimatePresence>
 
       </div>
     </section>

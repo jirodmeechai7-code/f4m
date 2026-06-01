@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BookOpen, Check, ChevronDown, ChevronUp, Lock } from "lucide-react";
+import { motion } from "motion/react";
 import { scheduleSessions } from "../data";
 import { ScheduleSession } from "../types";
 
@@ -33,7 +34,13 @@ export default function Schedule() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* Left panel: Selected active Session full card detail viewer */}
-          <div className="lg:col-span-5 bg-neutral-950 text-white rounded-none p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(220,38,38,1)] sticky top-24 border-2 border-neutral-950">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.55 }}
+            className="lg:col-span-5 bg-neutral-950 text-white rounded-none p-6 sm:p-8 shadow-[8px_8px_0px_0px_rgba(220,38,38,1)] sticky top-24 border-2 border-neutral-950"
+          >
             <span className="text-[9px] uppercase font-mono font-black text-brand-red tracking-widest block mb-1">
               Active Module Overview
             </span>
@@ -97,16 +104,21 @@ export default function Schedule() {
                 <p className="text-xs font-black uppercase tracking-widest leading-none text-center">Select a lesson module to view curriculum details</p>
               </div>
             )}
-          </div>
+          </motion.div>
 
           {/* Right panel: Timeline of Sessions interactive accordion list */}
           <div className="lg:col-span-7 flex flex-col gap-4">
-            {scheduleSessions.map((session) => {
+            {scheduleSessions.map((session, sIdx) => {
               const isOpen = activeSessionId === session.id;
               return (
-                <div
+                <motion.div
                   key={session.id}
                   onClick={() => toggleSession(session.id)}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.4, delay: sIdx * 0.05 }}
+                  whileHover={{ x: 6 }}
                   className={`group rounded-none p-5 border-2 cursor-pointer transition-all duration-200 flex items-start gap-4 select-none ${
                     isOpen
                       ? "bg-white border-brand-red shadow-[4px_4px_0px_0px_rgba(220,38,38,1)] text-neutral-950"
@@ -166,7 +178,7 @@ export default function Schedule() {
                       </div>
                     )}
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>

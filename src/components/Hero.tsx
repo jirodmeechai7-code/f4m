@@ -47,7 +47,12 @@ export default function Hero({ onReserveClick }: HeroProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Text content (7 columns on desktop) */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="lg:col-span-7 flex flex-col gap-6"
+          >
             
             {/* Live badge - sharp high contrast block */}
             <div className="inline-flex items-center gap-2 self-start bg-white border-2 border-neutral-950 py-1.5 px-4 rounded-none select-none">
@@ -141,10 +146,15 @@ export default function Hero({ onReserveClick }: HeroProps) {
               ))}
             </div>
 
-          </div>
+          </motion.div>
 
           {/* Banner Graphic/Image (5 columns on desktop) */}
-          <div className="lg:col-span-5 relative w-full flex justify-center items-center py-6">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+            className="lg:col-span-5 relative w-full flex justify-center items-center py-6"
+          >
             {/* Flat Solid shadows offset block mimicking theme banner layout */}
             <div className="absolute inset-0 bg-brand-red border-2 border-neutral-950 rounded-none transform translate-x-4 translate-y-4 -z-10" />
             
@@ -172,7 +182,7 @@ export default function Hero({ onReserveClick }: HeroProps) {
               </div>
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
       </div>

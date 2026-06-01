@@ -1,5 +1,6 @@
 import React from "react";
 import { CheckCircle2, Zap, Flame, BrainCircuit, HeartHandshake } from "lucide-react";
+import { motion } from "motion/react";
 
 export default function Advantage() {
   const trainingPoints = [
@@ -28,7 +29,13 @@ export default function Advantage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Modern styled Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4"
+        >
           <span className="text-[10px] uppercase font-mono tracking-widest text-brand-red font-black">
             THE INNER LEADERSHIP METHOD
           </span>
@@ -39,10 +46,16 @@ export default function Advantage() {
             Lead with clarity, confidence, and calm — from reaction to transformation.<br className="hidden sm:inline" />
             Shift from reactive damage control to centered, unwavering executive presence.          </p>
           <div className="w-20 h-1 bg-brand-red mx-auto mt-2" />
-        </div>
+        </motion.div>
 
         {/* Two-column detailed comparison structure from Mockup 2 */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch mt-12 bg-white rounded-none p-6 sm:p-10 lg:p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-2 border-neutral-950">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.98, y: 30 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.55 }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch mt-12 bg-white rounded-none p-6 sm:p-10 lg:p-12 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] border-2 border-neutral-950"
+        >
           
           {/* Left Column: Philosophical context */}
           <div className="lg:col-span-6 flex flex-col justify-center gap-6">
@@ -105,7 +118,7 @@ export default function Advantage() {
             </div>
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>
