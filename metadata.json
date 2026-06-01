@@ -1,0 +1,6 @@
+{
+  "name": "Conscious Leader Advantage",
+  "description": "An interactive, high-fidelity responsive landing page for the Conscious Leader Advantage cohort, featured in a powerful red and white UI with live discount codes, cohort scheduler, and reviews.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
